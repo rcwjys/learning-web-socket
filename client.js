@@ -10,6 +10,5 @@ const user1 = {
 
 socket.on('connect', () => {
   console.log(`Connected to server with ID: ${socket.id}`);
-  socket.emit('create-user', user1);
 });
 

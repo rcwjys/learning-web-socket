@@ -12,14 +12,18 @@ const io = new Server(httpServer, {
 });
 
 io.use((socket, next) => {
+
+  
   const token = socket.handshake.auth.token;
 
-  // Check if token is missing or not valid
-  if (!token || token !== 'abc') {
-    return next(new Error('Authentication error: Invalid or missing token'));
-  }
+  console.log(token)
 
-  // Token is valid, continue with connection
+
+  // if (!token || token !== 'abc') {
+  //   return next(new Error('Authentication error: Invalid or missing token'));
+  // }
+
+  // return next();
   return next();
 
 });
@@ -32,12 +36,12 @@ io.on('connection', (socket) => {
   });
 });
 
-// Global error handler for connection errors
+
 io.on('connect_error', (err) => {
   console.log('Global connection error:', err.message);
 });
 
-const PORT = 8080;
+const PORT = 8182;
 httpServer.listen(PORT, () => {
   console.log(`Socket.IO server listening on port ${PORT}`);
 });
